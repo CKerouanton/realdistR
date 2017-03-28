@@ -1,6 +1,6 @@
 # RealdistR
 
-R function to compute a distance with altitudes between two geographic points. Warning : the segmentation is not dependant of the euclidean distance, if reso = 15, there will be 15 altitudes between the two points.
+R function to compute a distance with altitudes between two geographic points.
 
 ### Parameters
 - p1 and p2 = points with coordinates x and y
