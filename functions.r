@@ -24,7 +24,10 @@ realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
   lon = c(p1[,x], p2[,x])
   lat = c(p1[,y], p2[,y])
   
-  ns = spline(lon, lat, 1000)
+  d = dist(cbind(lon, lat))
+  opt = d/reso
+  
+  ns = spline(lon, lat, opt)
   
   points = data.frame(x = ns$x, y = ns$y)
   points = alt_ext(spatial_traj93(points, points$x, points$y), mnt_grid)
