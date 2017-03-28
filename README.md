@@ -1,4 +1,4 @@
-# RealdistR
+# realdistR
 
 R function to compute a distance with altitudes between two geographic points.
 
