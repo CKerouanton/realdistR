@@ -20,9 +20,9 @@ spatial_traj93 <- function(traji, longitude, latitude){
 
 
 realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
-
-  lon = c(p1[,x], p2[,x])
-  lat = c(p1[,y], p2[,y])
+  
+  lon = c(p1[,"x"], p2[,"x"])
+  lat = c(p1[,"y"], p2[,"y"])
   
   d = dist(cbind(lon, lat))
   opt = d/reso
@@ -43,12 +43,10 @@ realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
     points$dcum[i] = points$dcum[i-1] + points$dist[i]
   }
   
-  return(sum(points$distr))
-  
   if(profil_out){
     exe = points[points$alti > 0,]
     plot(x = exe$dcum, y = exe$alti, type = "l", lwd = 2)
   }
+  return(sum(points$distr))
 }
-
 
