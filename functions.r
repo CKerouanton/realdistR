@@ -48,12 +48,15 @@ realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
     ns$dcum[i] = ns$dcum[i-1] + ns$dists[i]
   }
   
+  
   if(profil_out){
   exe = ns[ns$alti > 0,]
-  plot(x = ns$dcum, y = ns$alti, col = "white")
-  polygon(c(ns$dcum, ns$dcum[nrow(ns)]), c(ns$alti,ns$alti[1]), border = NA, col = "lightblue")
-  lines(x = ns$dcum, y = ns$alti, lwd = 2, col = "navy")
+  plot(x = exe$dcum, y = exe$alti, xlab = "distance", ylab = "altitude", col = "white")
+  polygon(c(0,exe$dcum, exe$dcum[nrow(ns)]), c(min(exe$alti)-5 ,exe$alti, min(exe$alti)-5), border = NA, col = "lightblue")
+  lines(x = exe$dcum, y = exe$alti, lwd = 2, col = "navy")
+  points(x = c(exe$dcum[1], exe$dcum[nrow(ns)]), y = c(exe$alti[1], exe$alti[nrow(exe)]), col = "tomato", cex = 1.5, pch = 19)
   }
+  if(min(ns$alti) < 0){print("Warning : mnt raster contains error pixels")}
   return(sum(ns$distr))
 }
 
