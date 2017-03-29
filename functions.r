@@ -18,7 +18,6 @@ spatial_traj93 <- function(traji, longitude, latitude){
 
 ######## RealdistR = cf Readme.md
 
-
 realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
   
   lon = c(p1[,"x"], p2[,"x"])
@@ -51,7 +50,9 @@ realdistR = function(p1, p2, reso, mnt_grid, profil_out = FALSE){
   
   if(profil_out){
   exe = ns[ns$alti > 0,]
-  plot(x = ns$dcum, y = ns$altis, type = "l", lwd = 2)
+  plot(x = ns$dcum, y = ns$alti, col = "white")
+  polygon(c(ns$dcum, ns$dcum[nrow(ns)]), c(ns$alti,ns$alti[1]), border = NA, col = "lightblue")
+  lines(x = ns$dcum, y = ns$alti, lwd = 2, col = "navy")
   }
   return(sum(ns$distr))
 }
